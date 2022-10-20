@@ -1,0 +1,22 @@
+export const mongooseModelStub: any = {
+  find: jest.fn().mockReturnThis(),
+  findOne: jest.fn().mockReturnThis(),
+  findById: jest.fn().mockReturnThis(),
+  select: jest.fn().mockReturnThis(),
+  where: jest.fn().mockReturnThis(),
+  equals: jest.fn().mockReturnThis(),
+  create: jest.fn().mockReturnThis(),
+  save: jest.fn().mockReturnThis(),
+  lean: jest.fn().mockReturnThis(),
+  exec: jest.fn().mockReturnThis(),
+  toObject: jest.fn().mockReturnThis(),
+  update: jest.fn().mockReturnThis(),
+  updateOne: jest.fn().mockReturnThis(),
+  findByIdAndUpdate: jest.fn().mockReturnThis(),
+  findOneAndUpdate: jest.fn().mockReturnThis(),
+  deleteOne: jest.fn().mockReturnThis(),
+  findByIdAndRemove: jest.fn().mockReturnThis(),
+  constructor: jest.fn().mockReturnThis(),
+  deleteSpaces: jest.fn().mockReturnThis(),
+  seedSpaces: jest.fn().mockReturnThis()
+};
