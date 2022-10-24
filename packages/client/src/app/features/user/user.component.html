@@ -1,0 +1,18 @@
+<mat-card class="card-content">
+  <mat-card-header class="card-header-center">
+    <mat-card-title class="card-header-center"><img [src]="(user$ | async)?.avatar" /></mat-card-title>
+    <mat-card-subtitle><h2>Account details</h2></mat-card-subtitle>
+  </mat-card-header>
+  <mat-progress-bar class="progress-bar" mode="buffer"></mat-progress-bar>
+  <mat-card-content>
+    <h3 class="card-h3">Full Name</h3>
+    <p class="card-p">{{ (user$ | async)?.fullName }}</p>
+  </mat-card-content>
+  <mat-card-content>
+    <h3 class="card-h3">Email</h3>
+    <p class="card-p">{{ (user$ | async)?.email }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button class="card-button" mat-button>SAVE</button>
+  </mat-card-actions>
+</mat-card>

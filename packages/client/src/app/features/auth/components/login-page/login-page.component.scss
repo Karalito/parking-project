@@ -1,0 +1,64 @@
+.par-c-login_icon {
+  transform: scale(7);
+}
+
+.par-c-login {
+  background: #cf5e79;
+  color: #ffffff;
+  min-width: 390px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: fixed;
+
+  /**
+  IMPROVE THIS !
+   */
+}
+
+.par-c-login__panel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  top: -50px;
+  height: 100%;
+  min-width: 250px;
+}
+
+h1 {
+  font-weight: bold;
+  margin: 0;
+  font-size: 40px;
+  margin: 60px;
+}
+
+p {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  margin: 100px 0 30px;
+}
+
+button {
+  border-radius: 20px;
+  border: 1px solid #ff4b2b;
+  background-color: #ff4b2b;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+button.par-c-login__outline {
+  background-color: transparent;
+  border-color: #ffffff;
+}

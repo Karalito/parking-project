@@ -1,4 +1,6 @@
 // JWT
+import mongoose from 'mongoose';
+
 export const IS_PUBLIC_KEY = 'isPublic';
 //
 
@@ -42,5 +44,33 @@ export const ROOM_RESERVATION_SPACES = [
     roomId: '3',
     screenSize: 'XL'
   }
+];
+
+export const PARKING_RESERVATION_SPACES = [
+  {
+    parkingPlaceId: '1'
+  },
+  {
+    parkingPlaceId: '2'
+  },
+  {
+    parkingPlaceId: '3'
+  },
+  {
+    parkingPlaceId: '4'
+  },
+  {
+    parkingPlaceId: '5'
+  }
+];
+
+export const USER_EXAMPLE = [
+  {
+    _id: new mongoose.Types.ObjectId(),
+    fullName: 'Test user',
+    email: 'test@testatorius.com',
+    role: 'User',
+    providerId: '107762071001101516229'
+  },
 ];
 //

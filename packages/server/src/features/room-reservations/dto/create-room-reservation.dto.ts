@@ -15,6 +15,7 @@ export class CreateRoomReservationDto {
   @IsString()
   readonly tableId: string;
 
+  @ApiModelProperty()
   @IsString()
   readonly date: Date;
 }

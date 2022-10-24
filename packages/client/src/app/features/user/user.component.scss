@@ -1,0 +1,35 @@
+.card-content {
+  max-width: 500px;
+  min-width: 350px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  vertical-align: middle;
+  top: 100px;
+  div {
+    font-size: 16px;
+  }
+}
+.card-header-center {
+  display: flex;
+  justify-content: center;
+  img {
+    height: 120px;
+    width: 120px;
+    border-radius: 50%;
+  }
+}
+.progress-bar {
+  margin-bottom: 20px;
+}
+.card-h3 {
+  margin: 0;
+}
+.card-p {
+  margin-top: 5px;
+}
+.card-button {
+  float: right;
+  font-size: 16px;
+}

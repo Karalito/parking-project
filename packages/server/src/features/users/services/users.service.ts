@@ -1,33 +1,48 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User, UserDocument } from '../../../schemas/user.schema';
-import { CustomNotFoundException } from '../../../middlewares/exceptions/custom-not-found.exception';
-import { NOT_FOUND_MESSAGES } from '../../../shared/constants/texts.constant';
+import { NOT_FOUND_MESSAGES } from '../../../shared/enums/texts.enum';
 import { UpdateUserDto } from '../dto/update-user.dto';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {
+  constructor(@InjectModel(User.name) private  readonly _userModel: Model<UserDocument>) {
   }
 
   async findAll(): Promise<User[]> {
-    return await this.userModel.find().exec();
+    const userList: User[] = await this._userModel.find().exec();
+
+    if (!userList && userList.length == 0) throw new NotFoundException(NOT_FOUND_MESSAGES.USERS_NOT_FOUND);
+
+    return userList;
   }
 
   async findOne(id: string): Promise<User> {
-    try {
-      return await this.userModel.findById(id).exec();
-    } catch (error) {
-      throw new CustomNotFoundException(NOT_FOUND_MESSAGES.USER_NOT_FOUND);
-    }
+    const existingUser: User = await this._userModel.findById(id).exec();
+
+    if (!existingUser) throw new NotFoundException(NOT_FOUND_MESSAGES.USER_NOT_FOUND);
+
+    return existingUser;
   }
 
   async update(_id: string, updateUserDto: UpdateUserDto): Promise<User> {
-    return await this.userModel.findOneAndUpdate({ _id }, { $set: { ...updateUserDto } }, { new: true }).exec();
+    const updatedUser: User = await this._userModel.findOneAndUpdate(
+      { _id },
+      { $set: { ...updateUserDto } },
+      { new: true }
+    ).exec();
+
+    if (!updatedUser) throw new NotFoundException(NOT_FOUND_MESSAGES.USER_NOT_FOUND);
+
+    return updatedUser;
   }
 
   async remove(_id: string): Promise<User> {
-    return await this.userModel.findByIdAndRemove({ _id }).exec();
+    const deletedUser: User = await this._userModel.findByIdAndDelete({ _id }).exec();
+
+    if (!deletedUser) throw new NotFoundException(NOT_FOUND_MESSAGES.USER_NOT_FOUND);
+
+    return deletedUser;
   }
 }

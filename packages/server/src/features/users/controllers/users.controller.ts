@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, UseGuards } from '@nestjs/common';
-import { DOMAIN_NAMES } from '../../../shared/constants/domain-names';
+import { DOMAIN_NAMES } from '../../../shared/enums/domain-names.enum';
 import { UsersService } from '../services/users.service';
 import { User } from '../../../schemas/user.schema';
 import { FindByIdDto } from '../../../shared/dto/find-by-id.dto';
