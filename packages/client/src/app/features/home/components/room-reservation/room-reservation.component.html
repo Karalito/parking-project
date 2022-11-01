@@ -1,0 +1,17 @@
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<div style="margin: 10px">
+  <div class="flex-container">
+    <h2>Work place</h2>
+    <app-free-spaces-count
+      [freeSpaces]="freeRoomReservationSpaces"
+      [totalSpaces]="totalRoomReservationSpaces"
+    ></app-free-spaces-count>
+  </div>
+  <app-table-view
+    [isDisabled]="isDisabled"
+    [isAddDisabled]="isAddDisabled"
+    [combinedRoomReservation]="combinedRoomReservation$ | async"
+    (addTableReservation)="addReservation($event)"
+    (removeTableReservation)="deleteReservation($event)"
+  ></app-table-view>
+</div>

@@ -6,6 +6,7 @@ import { FindByIdDto } from '../../../shared/dto/find-by-id.dto';
 import { UpdateUserDto } from '../dto/update-user.dto';
 import { Roles } from '../../../shared/decorators/roles.decorator';
 import { Role } from '../../../shared/enums/auth.enum';
+import { RequestUser } from '../../../shared/decorators/user.decorator';
 
 @Controller(DOMAIN_NAMES.USERS)
 export class UsersController {
@@ -23,10 +24,10 @@ export class UsersController {
   }
 
   @Patch(':id')
-  async update(@Param() params: FindByIdDto, @Body() updateUserDto: UpdateUserDto): Promise<User> {
+  async update(@Param() params: FindByIdDto, @Body() updateUserDto: UpdateUserDto, @RequestUser() user): Promise<User> {
     await this.findOne(params);
 
-    return await this.usersService.update(params.id, updateUserDto)
+    return await this.usersService.update(params.id, updateUserDto, user);
   }
 
   @Roles(Role.ADMIN)

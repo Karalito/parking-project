@@ -1,0 +1,17 @@
+<app-loading-spinner *ngIf="isLoading"></app-loading-spinner>
+<div style="margin: 10px">
+  <div class="flex-container">
+    <h2>Parking</h2>
+    <app-free-spaces-count
+      [freeSpaces]="freeParkingReservationSpaces"
+      [totalSpaces]="totalParkingReservationSpaces"
+    ></app-free-spaces-count>
+  </div>
+  <app-parking-reservation-list
+    [isDisabled]="isDisabled"
+    [isAddDisabled]="isAddDisabled"
+    [combinedParkingReservation]="combinedParkingReservation$ | async"
+    (addParkingReservation)="addReservation($event)"
+    (removeParkingReservation)="deleteReservation($event)"
+  ></app-parking-reservation-list>
+</div>

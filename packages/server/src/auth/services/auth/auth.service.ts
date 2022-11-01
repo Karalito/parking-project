@@ -10,9 +10,7 @@ export class AuthService {
 
   login(user: ILoginUser): IAccessToken {
     const { email, providerId, role } = user;
-    console.log(user);
     const payload: JwtPayload = { email, providerId, role };
-    console.log(payload);
     return { accessToken: this.jwtService.sign(payload) };
   }
 

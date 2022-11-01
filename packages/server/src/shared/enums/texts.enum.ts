@@ -10,5 +10,7 @@ export enum NOT_FOUND_MESSAGES {
 export enum NOT_ALLOWED_MESSAGES {
   NO_MORE_SPACES = 'Could not make a reservation, all spaces are taken.',
   ALREADY_TAKEN = 'Could not make a Reservation, this spot is already taken.',
-  USER_RESERVATION_EXISTS = 'Could not make a Reservation, User already has a reservation'
+  USER_RESERVATION_EXISTS = 'Could not make a Reservation, User already has a reservation.',
+  USER_IS_NOT_CREATOR = 'Could not make a Reservation, Reservation does not belong to this user.',
+  USER_IS_NOT_OWNER = 'Could not update User, User is not profile owner.'
 }

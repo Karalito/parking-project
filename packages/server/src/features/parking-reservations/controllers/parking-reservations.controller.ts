@@ -4,6 +4,8 @@ import { DOMAIN_NAMES } from '../../../shared/enums/domain-names.enum';
 import { CreateParkingReservationDto } from '../dto/create-parking-reservation.dto';
 import { ParkingReservation } from '../../../schemas/parking-reservation.schema';
 import { FindByIdDto } from '../../../shared/dto/find-by-id.dto';
+import { RequestUser } from '../../../shared/decorators/user.decorator';
+import { User } from '../../../schemas/user.schema';
 
 @Controller(DOMAIN_NAMES.PARKING_RESERVATIONS)
 export class ParkingReservationsController {
@@ -31,7 +33,7 @@ export class ParkingReservationsController {
   }
 
   @Delete(':id')
-  async remove(@Param() params: FindByIdDto): Promise<ParkingReservation> {
-    return await this._parkingReservationsService.remove(params.id);
+  async remove(@Param() params: FindByIdDto, @RequestUser() user: User): Promise<ParkingReservation> {
+    return await this._parkingReservationsService.remove(params.id, user);
   }
 }

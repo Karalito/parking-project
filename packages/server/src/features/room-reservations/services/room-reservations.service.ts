@@ -6,6 +6,8 @@ import { CreateRoomReservationDto } from '../dto/create-room-reservation.dto';
 import { NOT_ALLOWED_MESSAGES, NOT_FOUND_MESSAGES } from '../../../shared/enums/texts.enum';
 import { ROOM_RESERVATION_SPACES } from '../../../shared/constants/constant';
 import { UpdateRoomReservationDto } from '../dto/update-room-reservation.dto';
+import { User } from '../../../schemas/user.schema';
+import { Role } from '../../../shared/enums/auth.enum';
 
 @Injectable()
 export class RoomReservationsService {
@@ -67,11 +69,23 @@ export class RoomReservationsService {
     return updatedReservation;
   }
 
-  async remove(_id: string): Promise<RoomReservation> {
+  async remove(_id: string, user: User): Promise<RoomReservation> {
+    const isCreator = this.isCreator(_id, user);
+
+    if (!isCreator) throw new MethodNotAllowedException(NOT_ALLOWED_MESSAGES.USER_IS_NOT_CREATOR);
+
     const deletedReservation: RoomReservation = await this._roomReservationModel.findByIdAndDelete({ _id }).exec();
 
-    if (!deletedReservation) throw new NotFoundException('Could not find room reservation!');
+    if (!deletedReservation) throw new NotFoundException(NOT_FOUND_MESSAGES.ROOM_RESERVATION_NOT_FOUND);
 
     return deletedReservation;
+  }
+
+  async isCreator(_id: string, user: User): Promise<boolean> {
+    if (!(user.role === Role.ADMIN)) {
+      const reservation = await this.findOne(_id);
+      if (reservation.userId.toString() !== user._id.toString()) return false;
+    }
+    return true;
   }
 }

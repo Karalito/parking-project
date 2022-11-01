@@ -1,27 +1,27 @@
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { SharedModule } from './shared/shared.module';
 import { StoreModule } from '@ngrx/store';
-import { authReducer } from './state/auth/auth.reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
-import { AuthEffects } from './state/auth/auth.effects';
-import { CookieService } from 'ngx-cookie-service';
 import { AuthInterceptor } from './features/auth/interceptors/auth.interceptor';
+import { CookieService } from 'ngx-cookie-service';
+import { authReducer } from './state/auth/auth.reducers';
+import { AuthEffects } from './state/auth/auth.effects';
+import { parkingReservationReducer } from './state/parking-reservation/parking-reservation.reducer';
+import { roomReservationReducer } from './state/room-reservation/room-reservation.reducer';
+import { RoomReservationEffects } from './state/room-reservation/room-reservation.effects';
+import { ParkingReservationEffects } from './state/parking-reservation/parking-reservation.effects';
 import { NavigationComponent } from './shared/components/navigation/navigation.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavigationComponent,
-  ],
+  declarations: [AppComponent, NavigationComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,13 +30,15 @@ import { NavigationComponent } from './shared/components/navigation/navigation.c
     MaterialModule,
     SharedModule,
     StoreModule.forRoot({
-      auth: authReducer
+      auth: authReducer,
+      parkingReservation: parkingReservationReducer,
+      roomReservation: roomReservationReducer
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([AuthEffects])
+    EffectsModule.forRoot([AuthEffects, ParkingReservationEffects, RoomReservationEffects])
   ],
   providers: [
     CookieService,
@@ -48,5 +50,4 @@ import { NavigationComponent } from './shared/components/navigation/navigation.c
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

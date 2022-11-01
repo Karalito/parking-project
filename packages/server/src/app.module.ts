@@ -13,7 +13,9 @@ import { RoomReservationsModule } from './features/room-reservations/room-reserv
 import { ParkingReservationsModule } from './features/parking-reservations/parking-reservations.module';
 import { CurrentUserInterceptor } from './shared/interceptors/current-user.interceptor';
 import { RoomReservationSpacesModule } from './features/room-reservation-spaces/room-reservation-spaces.module';
-import { ParkingReservationSpacesModule } from './features/parking-reservation-spaces/parking-reservation-spaces.module';
+import {
+  ParkingReservationSpacesModule
+} from './features/parking-reservation-spaces/parking-reservation-spaces.module';
 import { PopulateDbModule } from './features/populate-db/populate-db.module';
 
 @Module({
@@ -37,7 +39,8 @@ import { PopulateDbModule } from './features/populate-db/populate-db.module';
     {
       provide: APP_INTERCEPTOR,
       useClass: CurrentUserInterceptor
-    }]
+    }
+  ]
 })
 export class AppModule {
 }

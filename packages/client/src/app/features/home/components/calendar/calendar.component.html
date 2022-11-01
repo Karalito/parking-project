@@ -1,0 +1,41 @@
+<div style="display: flex">
+  <button
+    mat-icon-button
+    aria-label="Previous day"
+    (click)="previousDay()"
+    [disabled]="showDate.value <= minDate || !showDate.valid ? true : false"
+    style="margin-top: 10px"
+  >
+    <mat-icon>navigate_before</mat-icon>
+  </button>
+  <mat-form-field appearance="fill" style="width: 100%">
+    <mat-datepicker-toggle matPrefix [for]="picker">
+      <mat-icon matDatepickerToggleIcon>filter_list</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-label>Date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      placeholder="Please enter date to show reservations"
+      [min]="minDate"
+      [max]="maxDate"
+      [formControl]="showDate"
+    />
+    <mat-datepicker
+      #picker
+      touchUi=""
+      restoreFocus="false"
+      [calendarHeaderComponent]="customCalendarHeader"
+    ></mat-datepicker>
+    <mat-error *ngIf="!showDate.valid"> Please enter valid date </mat-error>
+  </mat-form-field>
+  <button
+    mat-icon-button
+    aria-label="Next day"
+    (click)="nextDay()"
+    [disabled]="showDate.value >= maxDate || !showDate.valid ? true : false"
+    style="margin-top: 10px"
+  >
+    <mat-icon>navigate_next</mat-icon>
+  </button>
+</div>

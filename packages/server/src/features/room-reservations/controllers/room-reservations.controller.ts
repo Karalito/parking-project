@@ -5,10 +5,13 @@ import { CreateRoomReservationDto } from '../dto/create-room-reservation.dto';
 import { RoomReservation } from '../../../schemas/room-reservation.schema';
 import { FindByIdDto } from '../../../shared/dto/find-by-id.dto';
 import { UpdateRoomReservationDto } from '../dto/update-room-reservation.dto';
+import { RequestUser } from '../../../shared/decorators/user.decorator';
+import { User } from '../../../schemas/user.schema';
 
 @Controller(DOMAIN_NAMES.ROOM_RESERVATIONS)
 export class RoomReservationsController {
-  constructor(private readonly _roomReservationsService: RoomReservationsService) {}
+  constructor(private readonly _roomReservationsService: RoomReservationsService) {
+  }
 
   @Post()
   async addNew(@Body() createRoomReservationDto: CreateRoomReservationDto): Promise<RoomReservation> {
@@ -34,7 +37,7 @@ export class RoomReservationsController {
   }
 
   @Delete(':id')
-  async remove(@Param() params: FindByIdDto): Promise<RoomReservation> {
-    return await this._roomReservationsService.remove(params.id);
+  async remove(@Param() params: FindByIdDto, @RequestUser() requestUser: User): Promise<RoomReservation> {
+    return await this._roomReservationsService.remove(params.id, requestUser);
   }
 }

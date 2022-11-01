@@ -1,13 +1,14 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, MethodNotAllowedException, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User, UserDocument } from '../../../schemas/user.schema';
-import { NOT_FOUND_MESSAGES } from '../../../shared/enums/texts.enum';
+import { NOT_ALLOWED_MESSAGES, NOT_FOUND_MESSAGES } from '../../../shared/enums/texts.enum';
 import { UpdateUserDto } from '../dto/update-user.dto';
+import { Role } from '../../../shared/enums/auth.enum';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectModel(User.name) private  readonly _userModel: Model<UserDocument>) {
+  constructor(@InjectModel(User.name) private readonly _userModel: Model<UserDocument>) {
   }
 
   async findAll(): Promise<User[]> {
@@ -26,7 +27,12 @@ export class UsersService {
     return existingUser;
   }
 
-  async update(_id: string, updateUserDto: UpdateUserDto): Promise<User> {
+  async update(_id: string, updateUserDto: UpdateUserDto, user: User): Promise<User> {
+    const isCreator = await this.isCreator(_id, user);
+
+    if (!isCreator) throw new MethodNotAllowedException(NOT_ALLOWED_MESSAGES.USER_IS_NOT_OWNER);
+
+
     const updatedUser: User = await this._userModel.findOneAndUpdate(
       { _id },
       { $set: { ...updateUserDto } },
@@ -44,5 +50,13 @@ export class UsersService {
     if (!deletedUser) throw new NotFoundException(NOT_FOUND_MESSAGES.USER_NOT_FOUND);
 
     return deletedUser;
+  }
+
+  async isCreator(_id: string, user: User): Promise<boolean> {
+    if (!(user.role === Role.ADMIN)) {
+      const user = await this.findOne(_id);
+      if (user._id.toString() !== user._id.toString()) return false;
+    }
+    return true;
   }
 }

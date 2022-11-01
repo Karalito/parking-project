@@ -3,9 +3,9 @@ import { AuthService } from '../services/auth/auth.service';
 import { UserSecurityService } from '../services/user-security/user-security.service';
 import { ConfigService } from '@nestjs/config';
 import { GoogleOauthGuard } from '../guards/google-auth.guard';
-import { JwtAuthGuard } from '../guards/jwt-auth.guard';
 import { Request, Response } from 'express';
 import { Public } from '../../shared/decorators/access.decorator';
+import { RequestUser } from '../../shared/decorators/user.decorator';
 
 @Public()
 @Controller('auth')
@@ -16,12 +16,14 @@ export class AuthController {
     private authService: AuthService,
     private userSecurityService: UserSecurityService,
     private configService: ConfigService
-  ) {}
+  ) {
+  }
 
   @Get()
   @UseGuards(GoogleOauthGuard)
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
-  async googleAuth(@Req() _req?: Request): Promise<void> {}
+  async googleAuth(@Req() _req?: Request): Promise<void> {
+  }
 
   @Get('google/redirect')
   @UseGuards(GoogleOauthGuard)
@@ -37,14 +39,10 @@ export class AuthController {
   }
 
   @Get('profile')
-  @UseGuards(JwtAuthGuard)
-  async profile(@Req() req: Request, @Res() res: Response): Promise<Response<unknown, Record<string, unknown>>> {
-    const accessToken = req.headers['authorization'].split(' ')[1];
+  async profile(@Res() res: Response, @RequestUser() user): Promise<Response<unknown, Record<string, unknown>>> {
+    const dbUser = await this.userSecurityService.findOneByProviderId(user.providerId);
 
-    const { providerId } = this.authService.decodeJwt(accessToken);
-    const user = await this.userSecurityService.findOneByProviderId(providerId);
-
-    res.send(user);
+    res.send(dbUser);
     return res.status(200);
   }
 }
