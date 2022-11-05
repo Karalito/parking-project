@@ -19,6 +19,11 @@ const routes: Routes = [
     loadChildren: () => import('./features/home/home.module').then((m) => m.HomeModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'admin',
+    loadChildren: () => import('./features/admin/admin.module').then((m) => m.AdminModule),
+    canActivate: [AuthGuard]
+  },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
     path: '**',
@@ -31,4 +36,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

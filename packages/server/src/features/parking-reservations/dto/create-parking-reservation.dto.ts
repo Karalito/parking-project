@@ -13,6 +13,5 @@ export class CreateParkingReservationDto {
 
   @ApiModelProperty()
   @IsString()
-  @IsDateString()
   readonly date: Date;
 }

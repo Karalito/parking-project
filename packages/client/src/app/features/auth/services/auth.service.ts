@@ -10,7 +10,8 @@ import { DOMAIN_NAMES } from '../../../shared/enums/domain-names.enum';
 export class AuthService {
   authUrl = DOMAIN_NAMES.URL + DOMAIN_NAMES.AUTH;
 
-  constructor(private router: Router, private cookieService: CookieService, private http: HttpClient) {}
+  constructor(private router: Router, private cookieService: CookieService, private http: HttpClient) {
+  }
 
   login() {
     location.href = this.authUrl;
@@ -20,8 +21,7 @@ export class AuthService {
     return this.http.get(`${this.authUrl}/profile`);
   }
 
-  logout() {
-    this.cookieService.delete('authorization');
-    this.router.navigate(['home']);
+  getUserList() {
+    return this.http.get(`${DOMAIN_NAMES.URL}users`);
   }
 }

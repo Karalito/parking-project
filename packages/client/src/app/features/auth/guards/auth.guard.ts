@@ -19,9 +19,9 @@ export class AuthGuard implements CanActivate {
   }
 
   checkIfLogged() {
-    const token = this.cookieService.get('authorization');
-    const user = this.user$.subscribe((userData) => (this.userData = userData));
-    if (token && user) {
+    this.user$.subscribe((userData) => (this.userData = userData));
+    console.log('auth guard', this.userData);
+    if (this.userData) {
       return true;
     }
     return this.router.parseUrl('login');

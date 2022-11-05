@@ -23,9 +23,11 @@ export class ParkingReservationEffects {
       ofType(ParkingActions.getParkingReservation),
       switchMap((payload) => {
         this.reservationDate = payload.date;
-        return this.parkingReservationService.getParkingReservation(payload.date).pipe(
-          map((parkingReservation) => ParkingActions.getParkingReservationSuccess({ parkingReservation })),
-          catchError(() => of(ParkingActions.getParkingReservationFailure()))
+        return this.parkingReservationService.getParkingReservation(payload.date)
+          .pipe(
+            map((parkingReservation) =>
+              ParkingActions.getParkingReservationSuccess({ parkingReservation })),
+            catchError(() => of(ParkingActions.getParkingReservationFailure()))
         );
       })
     )

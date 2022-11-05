@@ -24,9 +24,11 @@ export class RoomReservationEffects {
       ofType(RoomActions.getRoomReservation),
       switchMap((payload) => {
         this.reservationDate = payload.date;
-        return this.roomReservationService.getRoomReservation(payload.date).pipe(
-          map((roomReservation) => RoomActions.getRoomReservationSuccess({ roomReservation })),
-          catchError(() => of(RoomActions.getRoomReservationFailure()))
+        return this.roomReservationService.getRoomReservation(payload.date)
+          .pipe(
+            map((roomReservation) =>
+              RoomActions.getRoomReservationSuccess({ roomReservation })),
+            catchError(() => of(RoomActions.getRoomReservationFailure()))
         );
       })
     )

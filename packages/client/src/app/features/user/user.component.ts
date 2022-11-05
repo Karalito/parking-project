@@ -8,6 +8,7 @@ import { selectUser } from 'src/app/state/auth/auth.selectors';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent {
-  constructor(private store: Store) {}
-  user$ = this.store.select(selectUser);
+  constructor(private _store: Store) {}
+
+  user$ = this._store.select(selectUser);
 }

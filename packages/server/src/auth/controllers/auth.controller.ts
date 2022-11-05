@@ -7,7 +7,6 @@ import { Request, Response } from 'express';
 import { Public } from '../../shared/decorators/access.decorator';
 import { RequestUser } from '../../shared/decorators/user.decorator';
 
-@Public()
 @Controller('auth')
 export class AuthController {
   redirectUrl = this.configService.get<string>('LOGIN_SUCCESS_REDIRECT_URL');
@@ -19,12 +18,14 @@ export class AuthController {
   ) {
   }
 
+  @Public()
   @Get()
   @UseGuards(GoogleOauthGuard)
   // eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-unused-vars
   async googleAuth(@Req() _req?: Request): Promise<void> {
   }
 
+  @Public()
   @Get('google/redirect')
   @UseGuards(GoogleOauthGuard)
   async googleAuthRedirect(

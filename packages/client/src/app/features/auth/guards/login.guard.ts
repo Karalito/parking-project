@@ -12,7 +12,8 @@ export class LoginGuard implements CanActivate {
   user$ = this.store.select(selectUser);
   userData?: User;
 
-  constructor(private cookieService: CookieService, private router: Router, private store: Store) {}
+  constructor(private cookieService: CookieService, private router: Router, private store: Store) {
+  }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): true | UrlTree {
     return this.checkIfLogged();
@@ -20,10 +21,10 @@ export class LoginGuard implements CanActivate {
 
   checkIfLogged() {
     const token = this.cookieService.get('authorization');
-    const user = this.user$.subscribe((userData) => (this.userData = userData));
-    if (token && user) {
-      return this.router.parseUrl('home');
-    }
+    this.user$.subscribe((userData) => (this.userData = userData));
+
+    if (token && this.userData) return this.router.parseUrl('home');
+
     return true;
   }
 }
