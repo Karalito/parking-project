@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectUserList } from 'src/app/state/auth/auth.selectors';
 import { getUserListAttempt } from '../../state/auth/auth.actions';
+import { User } from '../../shared/models/user.model';
 
 @Component({
   selector: 'app-admin',
@@ -9,13 +10,15 @@ import { getUserListAttempt } from '../../state/auth/auth.actions';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
+  userList$ = this._store.select(selectUserList);
+  userList: User[];
   constructor(private _store: Store) {
   }
 
-  userList$ = this._store.select(selectUserList);
-
   ngOnInit() {
     this._store.dispatch(getUserListAttempt());
+    this.userList$.subscribe(userList => this.userList = userList);
+    console.log('admni', this.userList);
   }
 
 }

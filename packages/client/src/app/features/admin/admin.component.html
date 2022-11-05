@@ -1,4 +1,7 @@
-<p>Admin works!sssss</p>
-<div *ngFor='let user of userList$ | async'>
-  {{user | json}}
+<div class="all-centered">
+  <user-list
+    [userList]='userList'
+  >
+  </user-list>
 </div>
+

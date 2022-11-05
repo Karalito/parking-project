@@ -8,7 +8,6 @@ import { HomeRoutingModule } from './home-routing.module';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { CustomCalendarHeader } from './components/calendar/calendar-header/calendar-header.component';
 import { RoomReservationComponent } from './components/room-reservation/room-reservation.component';
-import { PictureViewComponent } from './components/room-reservation/picture-view/picture-view.component';
 import { TableViewComponent } from './components/room-reservation/table-view/table-view.component';
 import { FreeSpacesCountComponent } from './components/free-spaces-count/free-spaces-count.component';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -21,7 +20,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CalendarComponent,
     CustomCalendarHeader,
     RoomReservationComponent,
-    PictureViewComponent,
     TableViewComponent,
     FreeSpacesCountComponent
   ],

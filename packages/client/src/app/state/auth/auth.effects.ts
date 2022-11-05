@@ -7,7 +7,7 @@ import {
   getUserListAttempt,
   getUserListFailure,
   getUserListSuccess,
-  getUserSuccess
+  getUserSuccess, updateUserAttempt, updateUserFailure, updateUserSuccess
 } from './auth.actions';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
@@ -38,6 +38,18 @@ export class AuthEffects {
         return this.authService.getUserList().pipe(
           map((userList: User[]) => getUserListSuccess({ userList })),
           catchError((error) => of(getUserListFailure))
+        );
+      })
+    )
+  );
+
+  updateUser$: Observable<Action> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(updateUserAttempt),
+      switchMap((payload) => {
+        return this.authService.updateUser(payload.user).pipe(
+          map((updatedUser: User) => updateUserSuccess({ updatedUser })),
+          catchError((error) => of(updateUserFailure))
         );
       })
     )

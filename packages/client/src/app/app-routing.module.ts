@@ -2,6 +2,7 @@ import { LoginGuard } from './features/auth/guards/login.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './features/auth/guards/auth.guard';
+import { RolesGuard } from './features/auth/guards/roles.guard';
 
 const routes: Routes = [
   {
@@ -22,7 +23,7 @@ const routes: Routes = [
   {
     path: 'admin',
     loadChildren: () => import('./features/admin/admin.module').then((m) => m.AdminModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RolesGuard]
   },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {

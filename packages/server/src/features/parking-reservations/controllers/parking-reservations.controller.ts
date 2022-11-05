@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpStatus, Param, Patch, Post, Query, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, } from '@nestjs/common';
 import { ParkingReservationsService } from '../services/parking-reservations.service';
 import { DOMAIN_NAMES } from '../../../shared/enums/domain-names.enum';
 import { CreateParkingReservationDto } from '../dto/create-parking-reservation.dto';
@@ -13,7 +13,7 @@ export class ParkingReservationsController {
   }
 
   @Post()
-  async addNew(@Res() response, @Body() createParkingReservationDto: CreateParkingReservationDto): Promise<ParkingReservation> {
+  async addNew(@Body() createParkingReservationDto: CreateParkingReservationDto): Promise<ParkingReservation> {
     return await this._parkingReservationsService.addNew(createParkingReservationDto);
   }
 

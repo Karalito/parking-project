@@ -1,61 +1,62 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class='sidenav-container'>
   <mat-sidenav
     #drawer
-    class="sidenav"
-    autoFocus="false"
-    [ngClass]="{ hidden: (isHandset$ | async) === false }"
-    fixedInViewport="false"
+    class='sidenav'
+    autoFocus='false'
+    [ngClass]='{ hidden: (isHandset$ | async) === false }'
+    fixedInViewport='false'
     [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="(isHandset$ | async) === false"
+    [opened]='(isHandset$ | async) === false'
   >
     <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list tabindex="-1">
-      <a mat-list-item routerLink="/home" [routerLinkActive]="['is-active']" (click)="drawer.toggle()">Home</a>
-      <a mat-list-item routerLink="/dashboard" [routerLinkActive]="['is-active']" (click)="drawer.toggle()"
-      >Dashboard</a
+    <mat-nav-list tabindex='-1'>
+      <a mat-list-item routerLink='/home' [routerLinkActive]="['is-active']" (click)='drawer.toggle()'>Home</a>
+      <a *ngIf="(user$ | async)?.role === 'Admin'" mat-list-item routerLink='/admin' [routerLinkActive]="['is-active']"
+         (click)='drawer.toggle()'
+      >Admin</a
       >
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color='primary'>
       <button
-        type="button"
-        aria-label="Toggle sidenav"
+        type='button'
+        aria-label='Toggle sidenav'
         mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async"
+        (click)='drawer.toggle()'
+        *ngIf='isHandset$ | async'
       >
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        <mat-icon aria-label='Side nav toggle icon'>menu</mat-icon>
       </button>
-      <span><a routerLink="/home">WPS</a></span>
-      <span class="spacer"></span>
-      <div *ngIf="(isHandset$ | async) === false">
-        <a routerLink="/home">Home</a>
-        <a routerLink="/dashboard">Dashboard</a>
+      <span><a routerLink='/home'>Parking App</a></span>
+      <span class='spacer'></span>
+      <div *ngIf='(isHandset$ | async) === false'>
+        <a routerLink='/home'>Home</a>
+        <a *ngIf="(user$ | async)?.role === 'Admin'" routerLink='/admin'>Admin</a>
       </div>
-      <button mat-button [matMenuTriggerFor]="menu" #menuTrigger>
-        <img id="nav__avatar" [src]="(user$ | async)?.avatar">
+      <button mat-button [matMenuTriggerFor]='menu' #menuTrigger>
+        <img id='nav__avatar' [src]='(user$ | async)?.avatar'>
       </button>
-      <mat-menu #menu="matMenu">
-        <div class="nav__user_container">
-          <div class="nav__user_container_menu">
-            <div class="avatar"><img id="nav__avatar" [src]="(user$ | async)?.avatar"></div>
-            <div class="nav__user_container_menu_name">
-              <div class="user_fullName">{{ (user$ | async)?.fullName }}</div>
-              <div class="user_email">{{ (user$ | async)?.email }}</div>
+      <mat-menu #menu='matMenu'>
+        <div class='nav__user_container'>
+          <div class='nav__user_container_menu'>
+            <div class='avatar'><img id='nav__avatar' [src]='(user$ | async)?.avatar'></div>
+            <div class='nav__user_container_menu_name'>
+              <div class='user_fullName'>{{ (user$ | async)?.fullName }}</div>
+              <div class='user_email'>{{ (user$ | async)?.email }}</div>
             </div>
           </div>
-          <button mat-menu-item routerLink="/user">
+          <button mat-menu-item routerLink='/user'>
             Profile
           </button>
           <mat-divider></mat-divider>
-          <button mat-menu-item (click)="logout()">Logout
+          <button mat-menu-item (click)='logout()'>Logout
           </button>
         </div>
       </mat-menu>
     </mat-toolbar>
     <!-- Add Content Here -->
-    <ng-content> </ng-content>
+    <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>
