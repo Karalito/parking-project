@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { ParkingReservation } from 'src/app/features/home/models/reservations';
+import { ParkingReservation } from 'src/app/shared/models/reservations';
 import {
   getParkingReservation,
   getParkingReservationSuccess,

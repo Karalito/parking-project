@@ -29,7 +29,7 @@ export class AuthService {
   updateUser(user: User) {
     const {_id, providerId, createdAt} = user;
     const body = {_id, providerId, createdAt, ...user}
-    console.log(body);
-    return this.http.put(`${DOMAIN_NAMES.URL}users/${user._id}`, JSON.stringify(body))
+    console.log('body', body);
+    return this.http.patch(`${DOMAIN_NAMES.URL}users/${user._id}`, body)
   }
 }

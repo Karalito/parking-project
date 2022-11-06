@@ -1,4 +1,4 @@
-import { ParkingReservation } from '../../models/reservations';
+import { ParkingReservation } from '../../../../shared/models/reservations';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Moment } from 'moment';
@@ -18,7 +18,7 @@ import {
 } from 'src/app/state/parking-reservation/parking-reservation.selector';
 import { selectUser } from 'src/app/state/auth/auth.selectors';
 import { TODAY_DATE } from '../../../../shared/constants/constants';
-import { ParkingReservationSpace } from '../../models/reservation-place';
+import { ParkingReservationSpace } from '../../../../shared/models/reservation-place';
 
 @Component({
   selector: 'app-parking-reservation',

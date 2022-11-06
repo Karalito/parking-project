@@ -33,9 +33,18 @@ export class NotificationService {
       panelClass: 'red-snackbar'
     });
   }
-  
+
   showSuccess() {
     this.snackBar.open('Successfully reserved!', 'Close', {
+      duration: 2000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: 'green-snackbar'
+    });
+  }
+
+  showSuccessUpdateUser(message: string) {
+    this.snackBar.open(message, 'Close', {
       duration: 2000,
       horizontalPosition: 'center',
       verticalPosition: 'top',

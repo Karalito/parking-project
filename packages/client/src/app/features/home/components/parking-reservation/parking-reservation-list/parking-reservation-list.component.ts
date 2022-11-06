@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { ParkingReservation } from '../../../models/reservations';
+import { ParkingReservation } from '../../../../../shared/models/reservations';
 import { selectUser } from 'src/app/state/auth/auth.selectors';
 import { Store } from '@ngrx/store';
-import { ParkingReservationSpace } from '../../../models/reservation-place';
+import { ParkingReservationSpace } from '../../../../../shared/models/reservation-place';
 
 @Component({
   selector: 'app-parking-reservation-list',

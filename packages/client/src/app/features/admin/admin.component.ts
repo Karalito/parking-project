@@ -18,7 +18,5 @@ export class AdminComponent implements OnInit {
   ngOnInit() {
     this._store.dispatch(getUserListAttempt());
     this.userList$.subscribe(userList => this.userList = userList);
-    console.log('admni', this.userList);
   }
-
 }

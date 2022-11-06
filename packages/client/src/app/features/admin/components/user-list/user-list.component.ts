@@ -20,13 +20,4 @@ export class UserListComponent {
     // Accepts two params, first - component, second - optional params
     this.dialog.open(UserDialogComponent, { data: user });
   }
-
-
-  // addReservation(newReservation: RoomReservation): void {
-  //   this.addTableReservation.emit(newReservation);
-  // }
-  //
-  // deleteReservation(oldReservation: RoomReservation): void {
-  //   this.removeTableReservation.emit(oldReservation);
-  // }
 }

@@ -11,21 +11,21 @@
         <mat-label>
           Full Name
         </mat-label>
-        <input matInput value='{{user.fullName}}' />
+        <input matInput value='{{user.fullName}}' formControlName='fullName' />
       </mat-form-field>
       <br />
       <mat-form-field appearance='fill' style='width:50vw'>
         <mat-label>
           Email Address
         </mat-label>
-        <input matInput value='{{user.email}}' />
+        <input matInput value='{{user.email}}' formControlName='email'/>
       </mat-form-field>
       <br />
       <mat-form-field appearance='fill' style='width:50vw'>
         <mat-label>
           Role
         </mat-label>
-        <mat-select [(value)]='user.role'>
+        <mat-select [(value)]='user.role' formControlName='role'>
           <mat-option [value]='roles.ADMIN'>{{roles.ADMIN}}</mat-option>
           <mat-option [value]='roles.USER'>{{roles.USER}}</mat-option>
         </mat-select>
@@ -35,12 +35,12 @@
         <mat-label>
           Avatar URL
         </mat-label>
-        <input matInput value='{{user.avatar}}' />
+        <input matInput value='{{user.avatar}}' formControlName='avatar' />
       </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions>
       <!--    <button mat-button mat-dialog-close style='border: 1px solid #3f51b5;'>Cancel</button>-->
-      <button mat-button style='border: 1px solid #3f51b5; width: 100%;' type='submit'>Save</button>
+      <button mat-button style='border: 1px solid #3f51b5; width: 100%;' type='submit' [mat-dialog-close]='true'>Save</button>
     </mat-dialog-actions>
   </form>
 </div>

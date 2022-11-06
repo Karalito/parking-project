@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Moment } from 'moment';
-import { RoomReservation } from '../../models/reservations';
+import { RoomReservation } from '../../../../shared/models/reservations';
 import {User} from "../../../../shared/models/user.model";
 import { DOMAIN_NAMES } from '../../../../shared/enums/domain-names.enum';
-import { RoomReservationSpace } from '../../models/reservation-place';
+import { RoomReservationSpace } from '../../../../shared/models/reservation-place';
 
 @Injectable({
   providedIn: 'root'
