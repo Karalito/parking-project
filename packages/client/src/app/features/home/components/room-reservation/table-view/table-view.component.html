@@ -24,7 +24,7 @@
     <th class="right w-50" mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
       <button
-        *ngIf="!element.name"
+        *ngIf="!element.name && !isDisabled && !isAddDisabled"
         mat-icon-button
         [disabled]="isDisabled || isAddDisabled"
         (click)="addReservation(element)"
@@ -32,7 +32,7 @@
         <mat-icon>add</mat-icon>
       </button>
       <button
-        *ngIf="element.name"
+        *ngIf="element.name && isDisabled || (user$ | async)?.fullName === element.name"
         mat-icon-button
         [disabled]="isDisabled || (user$ | async)?.fullName !== element.name"
         (click)="deleteReservation(element)"
