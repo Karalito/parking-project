@@ -1,8 +1,8 @@
 import { selectUser } from 'src/app/state/auth/auth.selectors';
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { RoomReservation } from '../../../../../shared/models/reservations';
+import { RoomReservation } from '../../../../../shared/models/reservations.model';
 import { Store } from '@ngrx/store';
-import { RoomReservationSpace } from '../../../../../shared/models/reservation-place';
+import { RoomReservationSpace } from '../../../../../shared/models/reservation-place.model';
 
 @Component({
   selector: 'app-table-view',

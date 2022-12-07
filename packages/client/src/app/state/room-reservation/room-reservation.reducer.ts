@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { RoomReservation } from 'src/app/shared/models/reservations';
+import { RoomReservation } from 'src/app/shared/models/reservations.model';
 import { getRoomReservation, getRoomReservationSuccess, getRoomReservationFailure } from './room-reservation.actions';
 export interface RoomReservationState {
   roomReservation: RoomReservation[];

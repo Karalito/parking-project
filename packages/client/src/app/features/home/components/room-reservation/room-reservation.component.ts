@@ -6,7 +6,7 @@ import { RoomReservationService } from '../../services/room-reservation/room-res
 import { combineLatest, Observable, BehaviorSubject } from 'rxjs';
 import { Moment } from 'moment';
 import { CalendarService } from '../../services/calendar/calendar.service';
-import { RoomReservation } from '../../../../shared/models/reservations';
+import { RoomReservation } from '../../../../shared/models/reservations.model';
 import { selectIsLoading, selectRoomReservation } from 'src/app/state/room-reservation/room-reservation.selector';
 import {
   addRoomReservation,
@@ -14,7 +14,7 @@ import {
   getRoomReservation
 } from 'src/app/state/room-reservation/room-reservation.actions';
 import { selectUser } from 'src/app/state/auth/auth.selectors';
-import { RoomReservationSpace } from '../../../../shared/models/reservation-place';
+import { RoomReservationSpace } from '../../../../shared/models/reservation-place.model';
 import { TODAY_DATE } from '../../../../shared/constants/constants';
 
 @Component({

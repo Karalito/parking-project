@@ -19,6 +19,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTabsModule } from '@angular/material/tabs';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -42,6 +45,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatCardModule,
     MatProgressBarModule,
     MatDialogModule,
+    MatSelectModule,
+    MatTabsModule
   ],
   exports: [
     LayoutModule,
@@ -64,7 +69,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatMenuModule,
     MatCardModule,
     MatProgressBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule,
+    MatTabsModule
   ]
 })
-export class MaterialModule {}
+export class MaterialModule {
+}

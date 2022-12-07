@@ -29,15 +29,17 @@
       >
         <mat-icon aria-label='Side nav toggle icon'>menu</mat-icon>
       </button>
-      <span><a routerLink='/home'>Parking App</a></span>
-      <span class='spacer'></span>
-      <div *ngIf='(isHandset$ | async) === false'>
-        <a routerLink='/home'>Home</a>
-        <a *ngIf="(user$ | async)?.role === 'Admin'" routerLink='/admin'>Admin</a>
+      <div class='nav-content'>
+        <span><a routerLink='/home'>Parking App</a></span>
+        <span class='spacer'></span>
+        <div *ngIf='(isHandset$ | async) === false'>
+          <a routerLink='/home'>Home</a>
+          <a *ngIf="(user$ | async)?.role === 'Admin'" routerLink='/admin'>Admin</a>
+        </div>
+        <button mat-button [matMenuTriggerFor]='menu' #menuTrigger>
+          <img id='nav__avatar' [src]='(user$ | async)?.avatar'>
+        </button>
       </div>
-      <button mat-button [matMenuTriggerFor]='menu' #menuTrigger>
-        <img id='nav__avatar' [src]='(user$ | async)?.avatar'>
-      </button>
       <mat-menu #menu='matMenu'>
         <div class='nav__user_container'>
           <div class='nav__user_container_menu'>

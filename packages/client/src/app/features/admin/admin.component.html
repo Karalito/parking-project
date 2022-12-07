@@ -1,7 +1,10 @@
-<div class="all-centered">
-  <user-list
-    [userList]='userList'
-  >
-  </user-list>
-</div>
+<mat-tab-group mat-stretch-tabs="true" class='admin--container'>
+  <mat-tab label='Users'>
+      <user-list></user-list>
+  </mat-tab>
+  <mat-tab label='Parking Spaces'>Hardware </mat-tab>
+  <mat-tab label='Room Spaces'>Hardware </mat-tab>
+  <mat-tab label='Hardware'>Hardware </mat-tab>
+  <mat-tab label='Table'>Table</mat-tab>
+</mat-tab-group>
 

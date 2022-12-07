@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { Moment } from 'moment';
-import { RoomReservation } from 'src/app/shared/models/reservations';
+import { RoomReservation } from 'src/app/shared/models/reservations.model';
 
 enum ActionTypes {
   ADD_ROOM_RESERVATION_ATTEMPT = '[Reservation List] Add room reservation attempt',

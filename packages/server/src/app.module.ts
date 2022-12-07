@@ -17,6 +17,8 @@ import {
   ParkingReservationSpacesModule
 } from './features/parking-reservation-spaces/parking-reservation-spaces.module';
 import { PopulateDbModule } from './features/populate-db/populate-db.module';
+import { HardwareModule } from './features/hardware/hardware.module';
+import { TableModule } from './features/tables/table.module';
 
 @Module({
   imports: [
@@ -28,6 +30,8 @@ import { PopulateDbModule } from './features/populate-db/populate-db.module';
     ParkingReservationsModule,
     RoomReservationSpacesModule,
     ParkingReservationSpacesModule,
+    HardwareModule,
+    TableModule,
     PopulateDbModule
   ],
   controllers: [AppController],

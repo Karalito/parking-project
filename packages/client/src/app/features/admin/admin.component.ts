@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectUserList } from 'src/app/state/auth/auth.selectors';
 import { getUserListAttempt } from '../../state/auth/auth.actions';
@@ -12,6 +12,7 @@ import { User } from '../../shared/models/user.model';
 export class AdminComponent implements OnInit {
   userList$ = this._store.select(selectUserList);
   userList: User[];
+
   constructor(private _store: Store) {
   }
 

@@ -74,3 +74,14 @@
     font-size: small;
   }
 }
+
+.nav-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  max-width: 978px;
+  min-width: 350px;
+  flex: 1 1 auto;
+
+}

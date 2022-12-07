@@ -1,6 +1,6 @@
 import { ParkingReservationComponent } from './components/parking-reservation/parking-reservation.component';
 import { ParkingReservationListComponent } from './components/parking-reservation/parking-reservation-list/parking-reservation-list.component';
-import { MaterialModule } from './../../material/material.module';
+import { MaterialModule } from '../../material/material.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home.component';

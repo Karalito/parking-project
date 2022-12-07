@@ -1,9 +1,19 @@
+.admin--container{
+  margin: 2% auto auto;
+  max-width: 978px;
+  min-width: 350px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  justify-content: space-between;
+}
+
 .all-centered{
   max-width: 978px;
   min-width: 350px;
   position: absolute;
   left: 0;
   right: 0;
-  margin: auto;
-  margin-top: 10%;
+  margin: 5% auto auto;
 }
