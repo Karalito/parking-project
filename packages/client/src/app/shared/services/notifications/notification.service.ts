@@ -5,7 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providedIn: 'root'
 })
 export class NotificationService {
-  constructor(private snackBar: MatSnackBar) {}
+  constructor(private snackBar: MatSnackBar) {
+  }
 
   showFailAdd() {
     this.snackBar.open('You cannot have more than 1 reservation per day!', 'Close', {
@@ -50,5 +51,32 @@ export class NotificationService {
       verticalPosition: 'top',
       panelClass: 'green-snackbar'
     });
+  }
+
+  showSuccessCreated(message: string) {
+    this.snackBar.open(`${message} Successfully created`, 'Close', {
+      duration: 2000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: 'green-snackbar'
+    });
+  }
+
+  showFailureCreated(message: string) {
+    this.snackBar.open(`Error occurred during creation ${message}`, 'Close', {
+      duration: 2000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: 'red-snackbar'
+    });
+  }
+
+  showFailureDelete(message: string) {
+    this.snackBar.open(`Error occurred during deletion ${message}`, 'Close', {
+      duration: 2000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: 'red-snackbar'
+    })
   }
 }

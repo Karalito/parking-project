@@ -3,7 +3,7 @@
     mat-icon-button
     aria-label="Previous day"
     (click)="previousDay()"
-    [disabled]="showDate.value <= minDate || !showDate.valid ? true : false"
+    [disabled]="showDate.value <= minDate || !showDate.valid"
     style="margin-top: 10px"
   >
     <mat-icon>navigate_before</mat-icon>
@@ -33,7 +33,7 @@
     mat-icon-button
     aria-label="Next day"
     (click)="nextDay()"
-    [disabled]="showDate.value >= maxDate || !showDate.valid ? true : false"
+    [disabled]="showDate.value >= maxDate || !showDate.valid"
     style="margin-top: 10px"
   >
     <mat-icon>navigate_next</mat-icon>

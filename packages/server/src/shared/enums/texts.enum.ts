@@ -10,6 +10,8 @@ export enum NOT_FOUND_MESSAGES {
   ROOM_RESERVATION_SPACE_NOT_FOUND = 'Room reservation space not found!',
   TABLE_NOT_FOUND = 'Table not found!',
   TABLE_LIST_EMPTY = 'Table list is empty!',
+  PARKING_SPACE_NOT_FOUND = 'Parking space not found!',
+  ROOM_SPACE_NOT_FOUND = 'Room space not found!',
 }
 
 export enum NOT_ALLOWED_MESSAGES {

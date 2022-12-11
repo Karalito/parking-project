@@ -11,6 +11,10 @@ import { RoomReservationComponent } from './components/room-reservation/room-res
 import { TableViewComponent } from './components/room-reservation/table-view/table-view.component';
 import { FreeSpacesCountComponent } from './components/free-spaces-count/free-spaces-count.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { RoomReservationDialogComponent } from './components/room-reservation/room-reservation-dialog/room-reservation-dialog.component';
+import { AdminModule } from '../admin/admin.module';
+import { IdToRoomNumberPipe } from '../../shared/pipes/id-to-room-number.pipe';
+import { HardwareNamePipe } from '../../shared/pipes/hardware-name.pipe';
 
 @NgModule({
   declarations: [
@@ -21,8 +25,11 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CustomCalendarHeader,
     RoomReservationComponent,
     TableViewComponent,
-    FreeSpacesCountComponent
+    FreeSpacesCountComponent,
+    RoomReservationDialogComponent,
+    IdToRoomNumberPipe,
+    HardwareNamePipe
   ],
-  imports: [CommonModule, HomeRoutingModule, MaterialModule, SharedModule]
+  imports: [CommonModule, HomeRoutingModule, MaterialModule, SharedModule, AdminModule]
 })
 export class HomeModule {}

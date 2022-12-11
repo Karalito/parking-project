@@ -6,8 +6,6 @@ export class Hardware {
   name: string;
   @Prop({ required: true })
   size: string;
-  @Prop({ required: true })
-  quantity: number;
 }
 
 export type HardwareDocument = Hardware & Document;

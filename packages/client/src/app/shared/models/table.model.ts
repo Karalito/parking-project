@@ -1,5 +1,5 @@
 export class Table {
-  roomId: string;
+  _id?: string;
   tableNumber: number;
   isErgonomic: boolean;
 }

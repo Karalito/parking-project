@@ -3,6 +3,9 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { RoomReservation } from '../../../../../shared/models/reservations.model';
 import { Store } from '@ngrx/store';
 import { RoomReservationSpace } from '../../../../../shared/models/reservation-place.model';
+import { Table } from '../../../../../shared/models/table.model';
+import { RoomSpace } from '../../../../../shared/models/room-space.model';
+import { Hardware } from '../../../../../shared/models/hardware.model';
 
 @Component({
   selector: 'app-table-view',
@@ -10,7 +13,10 @@ import { RoomReservationSpace } from '../../../../../shared/models/reservation-p
   styleUrls: ['./table-view.component.scss']
 })
 export class TableViewComponent {
-  displayedColumns: string[] = ['room', 'place', 'screen', 'name', 'changeStatus'];
+  displayedColumns: string[] = ['room', 'table', 'hardware', 'name', 'changeStatus'];
+  @Input() tableList: Table[];
+  @Input() hardwareList: Hardware[];
+  @Input() roomList: RoomSpace[];
   @Input() combinedRoomReservation: RoomReservationSpace[];
   @Output() addTableReservation: EventEmitter<RoomReservation> = new EventEmitter<RoomReservation>();
   @Output() removeTableReservation: EventEmitter<RoomReservation> = new EventEmitter<RoomReservation>();

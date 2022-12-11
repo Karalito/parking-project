@@ -9,7 +9,9 @@ export interface RoomReservationSpace {
   _id: string;
   roomId: string;
   tableId: string;
-  screenSize: string;
+  hardwareId?: string;
   name: string;
   avatar: string;
+  hardwareName: string;
+  table: string;
 }

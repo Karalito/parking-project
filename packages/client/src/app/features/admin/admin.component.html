@@ -1,10 +1,18 @@
-<mat-tab-group mat-stretch-tabs="true" class='admin--container'>
+<mat-tab-group mat-stretch-tabs='true' class='admin--container'>
   <mat-tab label='Users'>
-      <user-list></user-list>
+    <user-list></user-list>
   </mat-tab>
-  <mat-tab label='Parking Spaces'>Hardware </mat-tab>
-  <mat-tab label='Room Spaces'>Hardware </mat-tab>
-  <mat-tab label='Hardware'>Hardware </mat-tab>
-  <mat-tab label='Table'>Table</mat-tab>
+  <mat-tab label='Parking Spaces'>
+    <app-parking-space></app-parking-space>
+  </mat-tab>
+  <mat-tab label='Room Spaces'>
+    <app-room-space></app-room-space>
+  </mat-tab>
+  <mat-tab label='Hardware'>
+    <app-hardware></app-hardware>
+  </mat-tab>
+  <mat-tab label='Table'>
+    <app-table></app-table>
+  </mat-tab>
 </mat-tab-group>
 

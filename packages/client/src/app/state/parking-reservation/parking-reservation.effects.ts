@@ -27,7 +27,7 @@ export class ParkingReservationEffects {
           .pipe(
             map((parkingReservation) =>
               ParkingActions.getParkingReservationSuccess({ parkingReservation })),
-            catchError(() => of(ParkingActions.getParkingReservationFailure()))
+            catchError((error) => of(ParkingActions.getParkingReservationFailure(error)))
         );
       })
     )
@@ -41,7 +41,7 @@ export class ParkingReservationEffects {
           .addParkingReservation(payload.userId, payload.parkingPlaceId, payload.date)
           .pipe(
             map((parkingReservation) => ParkingActions.addParkingReservationSuccess({ parkingReservation })),
-            catchError(() => of(ParkingActions.addParkingReservationFailure()))
+            catchError((error) => of(ParkingActions.addParkingReservationFailure(error)))
           );
       })
     )
@@ -61,7 +61,7 @@ export class ParkingReservationEffects {
       switchMap((payload) => {
         return this.parkingReservationService.deleteParkingReservation(payload.userId).pipe(
           map(() => ParkingActions.deleteParkingReservationSuccess()),
-          catchError(() => of(ParkingActions.deleteParkingReservationFailure()))
+          catchError((error) => of(ParkingActions.deleteParkingReservationFailure(error)))
         );
       })
     )

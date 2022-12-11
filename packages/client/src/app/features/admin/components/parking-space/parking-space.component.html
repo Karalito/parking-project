@@ -1,0 +1,28 @@
+<div>
+  <div>
+    <button mat-button style='border: 1px solid #3f51b5; width: 100%; margin: 10px 0;' (click)='openDialog(parkingSpace)'>Add New
+      Parking Place
+    </button>
+  </div>
+  <div>
+    <table mat-table [dataSource]='parkingSpaceList' class='mat-elevation-z8 table'>
+      <ng-container matColumnDef='parkingSpaceNumber'>
+        <th class='left w-80 textCenter' mat-header-cell *matHeaderCellDef>Parking Place Number</th>
+        <td class='left w-80 textCenter' mat-cell *matCellDef='let element'>{{ element.parkingPlaceNumber }}</td>
+      </ng-container>
+      <ng-container matColumnDef='actions'>
+        <th class='right w-20' mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef='let element'>
+          <button
+            mat-icon-button
+            (click)='onDeleteParkingSpace(element._id)'
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef='displayedColumns'></tr>
+      <tr mat-row *matRowDef='let row; columns: displayedColumns'></tr>
+    </table>
+  </div>
+</div>

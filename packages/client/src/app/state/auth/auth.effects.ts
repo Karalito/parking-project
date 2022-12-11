@@ -16,8 +16,7 @@ import { User } from '../../shared/models/user.model';
 
 @Injectable()
 export class AuthEffects {
-  constructor(private actions$: Actions, private authService: AuthService) {
-  }
+
 
   getUser$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
@@ -54,4 +53,7 @@ export class AuthEffects {
       })
     )
   );
+
+  constructor(private actions$: Actions, private authService: AuthService) {
+  }
 }

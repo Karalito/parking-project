@@ -1,6 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 import { Moment } from 'moment';
 import { ParkingReservation } from 'src/app/shared/models/reservations.model';
+import { IError } from 'protractor/built/exitCodes';
 
 enum ActionTypes {
   ADD_PARKING_RESERVATION_ATTEMPT = '[Reservation List] Add parking reservation attempt',
@@ -19,12 +20,12 @@ enum ActionTypes {
 
 export const addParkingReservation = createAction(ActionTypes.ADD_PARKING_RESERVATION_ATTEMPT, props<{ userId: string; parkingPlaceId: string; date: Moment }>());
 export const addParkingReservationSuccess = createAction(ActionTypes.ADD_PARKING_RESERVATION_SUCCESS, props<{ parkingReservation: ParkingReservation }>());
-export const addParkingReservationFailure = createAction(ActionTypes.ADD_PARKING_RESERVATION_FAILURE);
+export const addParkingReservationFailure = createAction(ActionTypes.ADD_PARKING_RESERVATION_FAILURE, props<{error: IError}>());
 
 export const deleteParkingReservation = createAction(ActionTypes.REMOVE_PARKING_RESERVATION_ATTEMPT, props<{ userId: string }>());
 export const deleteParkingReservationSuccess = createAction(ActionTypes.REMOVE_PARKING_RESERVATION_SUCCESS);
-export const deleteParkingReservationFailure = createAction(ActionTypes.REMOVE_PARKING_RESERVATION_FAILURE);
+export const deleteParkingReservationFailure = createAction(ActionTypes.REMOVE_PARKING_RESERVATION_FAILURE, props<{error: IError}>());
 
 export const getParkingReservation = createAction(ActionTypes.GET_PARKING_RESERVATIONS_ATTEMPT, props<{ date: Moment }>());
 export const getParkingReservationSuccess = createAction(ActionTypes.GET_PARKING_RESERVATIONS_SUCCESS, props<{ parkingReservation: ParkingReservation[] }>());
-export const getParkingReservationFailure = createAction(ActionTypes.GET_PARKING_RESERVATIONS_FAILURE);
+export const getParkingReservationFailure = createAction(ActionTypes.GET_PARKING_RESERVATIONS_FAILURE, props<{error: IError}>());

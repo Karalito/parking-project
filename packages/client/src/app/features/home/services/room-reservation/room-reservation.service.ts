@@ -3,9 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Moment } from 'moment';
 import { RoomReservation } from '../../../../shared/models/reservations.model';
-import {User} from "../../../../shared/models/user.model";
+import { User } from '../../../../shared/models/user.model';
 import { DOMAIN_NAMES } from '../../../../shared/enums/domain-names.enum';
 import { RoomReservationSpace } from '../../../../shared/models/reservation-place.model';
+import { Table } from '../../../../shared/models/table.model';
+import { Hardware } from '../../../../shared/models/hardware.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +18,11 @@ export class RoomReservationService {
   roomSpaceUrl = DOMAIN_NAMES.ROOM_RESERVATION_SPACE;
   user = DOMAIN_NAMES.USER;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   getRoomReservation(date: Moment): Observable<RoomReservation[]> {
     return this.http.get<RoomReservation[]>(this.baseUrl + this.roomReservationUrl + '/' + `?date=${date}`);
@@ -28,11 +32,11 @@ export class RoomReservationService {
     return this.http.get<RoomReservationSpace[]>(this.baseUrl + this.roomSpaceUrl);
   }
 
-  addRoomReservation(userId: string, roomId: string, tableId: string, date: Moment): Observable<RoomReservation> {
+  addRoomReservation(userId: string, roomId: string, hardwareId: string, date: Moment): Observable<RoomReservation> {
     return this.http.post<RoomReservation>(this.baseUrl + this.roomReservationUrl, {
       userId,
       roomId,
-      tableId,
+      hardwareId,
       date
     });
   }
@@ -43,6 +47,14 @@ export class RoomReservationService {
 
   getUserDetails(userId: string): Observable<User> {
     return this.http.get<User>(this.baseUrl + this.user + '/' + userId);
+  }
+
+  getTableDetails(id: string): Observable<Table> {
+    return this.http.get<Table>(this.baseUrl + `tables/${id}`);
+  }
+
+  getHardwareDetails(id: string): Observable<Hardware> {
+    return this.http.get<Hardware>(this.baseUrl + `hardware/${id}`);
   }
 
   findUserReservation(userId: string): Observable<RoomReservation> {

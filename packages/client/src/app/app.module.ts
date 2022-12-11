@@ -19,6 +19,14 @@ import { roomReservationReducer } from './state/room-reservation/room-reservatio
 import { RoomReservationEffects } from './state/room-reservation/room-reservation.effects';
 import { ParkingReservationEffects } from './state/parking-reservation/parking-reservation.effects';
 import { NavigationComponent } from './shared/components/navigation/navigation.component';
+import { tableReducer } from './state/table/table.reducer';
+import { TableEffects } from './state/table/table.effects';
+import { hardwareReducer } from './state/hardware/hardware.reducer';
+import { HardwareEffects } from './state/hardware/hardware.effects';
+import { ParkingSpaceEffects } from './state/parking-space/parking-space.effects';
+import { parkingSpaceReducer } from './state/parking-space/parking-space.reducer';
+import { roomSpaceReducer } from './state/room-space/room-space.reducer';
+import { RoomSpaceEffects } from './state/room-space/room-space.effects';
 
 @NgModule({
   declarations: [AppComponent, NavigationComponent],
@@ -32,13 +40,25 @@ import { NavigationComponent } from './shared/components/navigation/navigation.c
     StoreModule.forRoot({
       auth: authReducer,
       parkingReservation: parkingReservationReducer,
-      roomReservation: roomReservationReducer
+      parkingSpace: parkingSpaceReducer,
+      roomReservation: roomReservationReducer,
+      roomSpace: roomSpaceReducer,
+      table: tableReducer,
+      hardware: hardwareReducer
     }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
     }),
-    EffectsModule.forRoot([AuthEffects, ParkingReservationEffects, RoomReservationEffects])
+    EffectsModule.forRoot([
+      AuthEffects,
+      ParkingReservationEffects,
+      RoomReservationEffects,
+      TableEffects,
+      HardwareEffects,
+      ParkingSpaceEffects,
+      RoomSpaceEffects
+    ])
   ],
   providers: [
     CookieService,
@@ -50,4 +70,5 @@ import { NavigationComponent } from './shared/components/navigation/navigation.c
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

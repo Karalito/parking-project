@@ -20,7 +20,6 @@ export class AuthGuard implements CanActivate {
 
   checkIfLogged() {
     this.user$.subscribe((userData) => (this.userData = userData));
-    console.log('auth guard', this.userData);
     if (this.userData) {
       return true;
     }

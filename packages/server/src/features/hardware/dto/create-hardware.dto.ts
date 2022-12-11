@@ -7,6 +7,6 @@ export class CreateHardwareDto {
   readonly name: string
 
   @ApiModelProperty()
-  @IsNumber()
-  readonly quantity: number
+  @IsString()
+  readonly size: string
 }

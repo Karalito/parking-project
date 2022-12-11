@@ -5,10 +5,10 @@ import { User, UserDocument } from '../../../schemas/user.schema';
 import { ParkingReservation, ParkingReservationDocument } from '../../../schemas/parking-reservation.schema';
 import { RoomReservation, RoomReservationDocument } from '../../../schemas/room-reservation.schema';
 import {
-  ParkingReservationSpace,
-  ParkingReservationSpaceDocument
-} from '../../../schemas/parking-reservation-space.schema';
-import { RoomReservationSpace, RoomReservationSpaceDocument } from '../../../schemas/room-reservation-space.schema';
+  ParkingSpace,
+  ParkingSpaceDocument
+} from '../../../schemas/parking-space.schema';
+import { RoomSpace, RoomSpaceDocument } from '../../../schemas/room-space.schema';
 import { PARKING_RESERVATION_SPACES, ROOM_RESERVATION_SPACES, USER_EXAMPLE } from '../../../shared/constants/constant';
 
 @Injectable()
@@ -16,10 +16,10 @@ export class PopulateDbService {
   logger: Logger;
 
   constructor(
-    @InjectModel(RoomReservationSpace.name)
-    private readonly roomReservationSpaceModel: Model<RoomReservationSpaceDocument>,
-    @InjectModel(ParkingReservationSpace.name)
-    private readonly parkingReservationSpaceModel: Model<ParkingReservationSpaceDocument>,
+    @InjectModel(RoomSpace.name)
+    private readonly roomReservationSpaceModel: Model<RoomSpaceDocument>,
+    @InjectModel(ParkingSpace.name)
+    private readonly parkingReservationSpaceModel: Model<ParkingSpaceDocument>,
     @InjectModel(RoomReservation.name)
     private readonly roomReservationModel: Model<RoomReservationDocument>,
     @InjectModel(ParkingReservation.name)
@@ -145,7 +145,7 @@ export class PopulateDbService {
       try {
         await this.userModel.deleteMany({}).exec();
       } catch (error) {
-        throw new NotFoundException('Could not delete users! ', error);
+        throw new NotFoundException('Could not delete user! ', error);
       }
       return `Users were deleted.`;
     }

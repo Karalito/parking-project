@@ -1,16 +1,16 @@
 <table mat-table [dataSource]="combinedRoomReservation" class="mat-elevation-z8 table">
   <ng-container matColumnDef="room">
     <th class="left w-50 textCenter" mat-header-cell *matHeaderCellDef>Room</th>
-    <td class="left w-50 textCenter" mat-cell *matCellDef="let element">{{ element.roomId }}</td>
+    <td class="left w-50 textCenter" mat-cell *matCellDef="let element">{{ element.roomNumber }}</td>
   </ng-container>
-  <ng-container matColumnDef="place">
-    <th class="left w-50 textCenter" mat-header-cell *matHeaderCellDef>Place</th>
-    <td class="left w-50 textCenter" mat-cell *matCellDef="let element">{{ element.tableId }}</td>
+  <ng-container matColumnDef="table">
+    <th class="left w-50 textCenter" mat-header-cell *matHeaderCellDef>Table</th>
+    <td class="left w-50 textCenter" mat-cell *matCellDef="let element">{{ element.table }}</td>
   </ng-container>
-  <ng-container matColumnDef="screen">
-    <th class="left w-75 textCenter" mat-header-cell *matHeaderCellDef>Screen</th>
+  <ng-container matColumnDef="hardware">
+    <th class="left w-75 textCenter" mat-header-cell *matHeaderCellDef>Hardware</th>
     <td class="left w-75 textCenter" mat-cell *matCellDef="let element">
-      {{ element.screenSize }}
+      {{ element.hardwareName }}
     </td>
   </ng-container>
   <ng-container matColumnDef="name">

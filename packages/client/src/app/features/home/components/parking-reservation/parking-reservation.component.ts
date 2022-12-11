@@ -19,6 +19,7 @@ import {
 import { selectUser } from 'src/app/state/auth/auth.selectors';
 import { TODAY_DATE } from '../../../../shared/constants/constants';
 import { ParkingReservationSpace } from '../../../../shared/models/reservation-place.model';
+import { getParkingSpaceListAttempt } from '../../../../state/parking-space/parking-space.actions';
 
 @Component({
   selector: 'app-parking-reservation',
@@ -44,12 +45,14 @@ export class ParkingReservationComponent implements OnInit {
     private store: Store,
     private calendarService: CalendarService,
     private notificationService: NotificationService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.store.dispatch(getParkingReservation({ date: this.dateFromCalendar }));
     this.calendarService.dateEmitter.subscribe((date: Moment) => {
       this.dateFromCalendar = date;
+      this.store.dispatch(getParkingSpaceListAttempt());
       this.store.dispatch(getParkingReservation({ date }));
     });
     this.parkingReservationSpaces$ = this.parkingReservationService.getParkingPlace();
@@ -58,20 +61,18 @@ export class ParkingReservationComponent implements OnInit {
       ([parkingSpaces, parkingReservations]) => {
         this.user$.subscribe((userData) => (this.userId = userData._id));
         this.isDisabled = this.dateFromCalendar < TODAY_DATE;
-        this.isAddDisabled = parkingReservations.find((reservation) => reservation.userId === this.userId)
-          ? true
-          : false;
+        this.isAddDisabled = !!parkingReservations.find((reservation) => reservation.userId === this.userId);
         this.freeParkingReservationSpaces = parkingSpaces.length - parkingReservations.length;
         this.totalParkingReservationSpaces = parkingSpaces.length;
         for (const space of parkingSpaces) {
           let existingParking = parkingReservations.find(
-            (reservation) => reservation.parkingPlaceId === space.parkingPlaceId
+            (reservation) => reservation.parkingPlaceId === space._id
           );
           existingParking
             ? (this.parkingReservationService.getUserDetail(existingParking.userId).subscribe((existingUser: User) => {
-                space.name = existingUser.fullName;
-                space.avatar = existingUser.avatar;
-              }),
+              space.name = existingUser.fullName;
+              space.avatar = existingUser.avatar;
+            }),
               (space._id = existingParking._id))
             : (space.name = '');
         }
@@ -91,7 +92,7 @@ export class ParkingReservationComponent implements OnInit {
       return this.store.dispatch(
         addParkingReservation({
           userId: this.userId,
-          parkingPlaceId: newReservation.parkingPlaceId,
+          parkingPlaceId: newReservation._id,
           date: this.dateFromCalendar
         })
       );

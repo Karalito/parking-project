@@ -1,0 +1,30 @@
+<div>
+  <div>
+    <button mat-button style='border: 1px solid #3f51b5; width: 100%; margin: 10px 0;' (click)='openDialog(hardware)'>Add New Hardware</button>
+  </div>
+  <div>
+    <table mat-table [dataSource]='hardwareList' class='mat-elevation-z8 table'>
+      <ng-container matColumnDef='name'>
+        <th class='left w-50 textCenter' mat-header-cell *matHeaderCellDef>Name</th>
+        <td class='left w-50 textCenter' mat-cell *matCellDef='let element'>{{ element.name }}</td>
+      </ng-container>
+      <ng-container matColumnDef='size'>
+        <th class='left w-50 textCenter' mat-header-cell *matHeaderCellDef>Size</th>
+        <td class='left w-50 textCenter' mat-cell *matCellDef='let element'>{{ element.size }}</td>
+      </ng-container>
+      <ng-container matColumnDef='actions' >
+        <th class='right w-50' mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef='let element'>
+          <button
+            mat-icon-button
+            (click)='onDeleteHardware(element._id)'
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef='displayedColumns'></tr>
+      <tr mat-row *matRowDef='let row; columns: displayedColumns'></tr>
+    </table>
+  </div>
+</div>

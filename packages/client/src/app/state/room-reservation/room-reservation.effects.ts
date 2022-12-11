@@ -28,7 +28,7 @@ export class RoomReservationEffects {
           .pipe(
             map((roomReservation) =>
               RoomActions.getRoomReservationSuccess({ roomReservation })),
-            catchError(() => of(RoomActions.getRoomReservationFailure()))
+            catchError((error) => of(RoomActions.getRoomReservationFailure(error)))
         );
       })
     )
@@ -39,10 +39,10 @@ export class RoomReservationEffects {
       ofType(RoomActions.addRoomReservation),
       switchMap((payload) => {
         return this.roomReservationService
-          .addRoomReservation(payload.userId, payload.roomId, payload.tableId, payload.date)
+          .addRoomReservation(payload.userId, payload.roomId, payload.hardwareId, payload.date)
           .pipe(
             map((roomReservation) => RoomActions.addRoomReservationSuccess({ roomReservation })),
-            catchError(() => of(RoomActions.addRoomReservationFailure()))
+            catchError((error) => of(RoomActions.addRoomReservationFailure(error)))
           );
       })
     )
@@ -62,7 +62,7 @@ export class RoomReservationEffects {
       switchMap((payload) => {
         return this.roomReservationService.deleteRoomReservation(payload.userId).pipe(
           map(() => RoomActions.deleteRoomReservationSuccess()),
-          catchError(() => of(RoomActions.deleteRoomReservationFailure()))
+          catchError((error) => of(RoomActions.deleteRoomReservationFailure(error)))
         );
       })
     )

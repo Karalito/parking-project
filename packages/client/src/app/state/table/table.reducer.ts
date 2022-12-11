@@ -11,8 +11,6 @@ import {
   getTableListSuccess,
   getTableSuccess
 } from './table.actions';
-import { error } from '@angular/compiler/src/util';
-import { state } from '@angular/animations';
 
 export interface TableState {
   tableList: Table[];
@@ -49,13 +47,16 @@ export const tableReducer = createReducer(
 
   on(getTableListAttempt, (state) => ({
     ...state,
-    isLoading: true
+    isLoading: true,
+    tableList: null,
+    table: null,
+    error: null
   })),
   on(getTableListSuccess, (state, action) => ({
     ...state,
     tableList: action.tableList,
-    table: null,
-    isLoading: false
+    isLoading: false,
+    error: null
   })),
   on(getTableListFailure, (state, action) => ({
     ...state,

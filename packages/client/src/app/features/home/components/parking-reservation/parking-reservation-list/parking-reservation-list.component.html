@@ -1,7 +1,7 @@
 <table mat-table [dataSource]="combinedParkingReservation" class="mat-elevation-z8 table">
   <ng-container matColumnDef="place">
     <th class="left w-50 textCenter" mat-header-cell *matHeaderCellDef>Place</th>
-    <td class="left w-50 textCenter" mat-cell *matCellDef="let element">{{ element.parkingPlaceId }}</td>
+    <td class="left w-50 textCenter" mat-cell *matCellDef="let element">{{ element.parkingPlaceNumber }}</td>
   </ng-container>
   <ng-container matColumnDef="name">
     <th class="center" mat-header-cell *matHeaderCellDef>Reserved by</th>

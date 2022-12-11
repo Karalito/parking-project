@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '../../../../shared/models/user.model';
 import { MatDialog } from '@angular/material/dialog';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
@@ -14,7 +14,7 @@ import { getUserListAttempt } from '../../../../state/auth/auth.actions';
 export class UserListComponent implements OnInit {
   userList$ = this._store.select(selectUserList);
   userList: User[];
-  displayedColumns: string[] = ['avatar', 'name', 'email', 'role', 'changeStatus'];
+  displayedColumns: string[] = ['avatar', 'name', 'email', 'role', 'actions'];
 
   constructor(public dialog: MatDialog, private _store: Store) {
   }

@@ -25,7 +25,7 @@ export const addTableSuccess = createAction(ActionTypes.ADD_TABLE_SUCCESS, props
 export const addTableFailure = createAction(ActionTypes.ADD_TABLE_FAILURE, props<{ error: IError }>());
 
 export const deleteTableAttempt = createAction(ActionTypes.REMOVE_TABLE_ATTEMPT, props<{ tableId: string }>());
-export const deleteTableSuccess = createAction(ActionTypes.REMOVE_TABLE_SUCCESS);
+export const deleteTableSuccess = createAction(ActionTypes.REMOVE_TABLE_SUCCESS, props<{ table: Table }>());
 export const deleteTableFailure = createAction(ActionTypes.REMOVE_TABLE_FAILURE, props<{ error: IError }>());
 
 export const getTableAttempt = createAction(ActionTypes.GET_TABLE_ATTEMPT);

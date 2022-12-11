@@ -1,0 +1,42 @@
+<div style='max-width: fit-content'>
+  <div>
+    <h2 mat-dialog-title style='float: left'>Add new Table</h2>
+    <button mat-icon-button class='close-button' [mat-dialog-close]='true' style='float: right'>
+      <mat-icon class='close-icon' color='warn'>close</mat-icon>
+    </button>
+  </div>
+  <form style='clear: both' [formGroup]='form' (ngSubmit)='onSubmit()'>
+    <mat-dialog-content>
+      <mat-form-field appearance='fill' style='width:50vw'>
+        <mat-label>
+          Table Number
+        </mat-label>
+        <input matInput type='number' value='{{table.tableNumber}}' formControlName='tableNumber' />
+      </mat-form-field>
+      <br/>
+      <mat-form-field appearance='fill' style='width:50vw'>
+        <mat-label>
+          Is Ergonomic
+        </mat-label>
+        <mat-select [(value)]='table.isErgonomic' formControlName='isErgonomic'>
+          <mat-option [value]='true'>True</mat-option>
+          <mat-option [value]='false'>False</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br/>
+<!--      <mat-form-field appearance='fill' style='width:50vw'>-->
+<!--        <mat-label>-->
+<!--          Room Number-->
+<!--        </mat-label>-->
+<!--        <mat-select [(value)]='table.roomId' formControlName='roomId'>-->
+<!--          <mat-option *ngFor='let room of roomSpaceList' [value]='room._id'>{{room.roomNumber}}</mat-option>-->
+<!--        </mat-select>-->
+<!--      </mat-form-field>-->
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <!--    <button mat-button mat-dialog-close style='border: 1px solid #3f51b5;'>Cancel</button>-->
+      <button mat-button style='border: 1px solid #3f51b5; width: 100%;' type='submit' [mat-dialog-close]='true'>Add
+      </button>
+    </mat-dialog-actions>
+  </form>
+</div>
