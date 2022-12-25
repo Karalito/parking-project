@@ -83,8 +83,12 @@ export class RoomReservationComponent implements OnInit {
         this.freeRoomReservationSpaces = roomSpaces.length - roomReservations.length;
         this.totalRoomReservationSpaces = roomSpaces.length;
         for (const space of roomSpaces) {
+
           let existingRoomReservation = roomReservations.find(
-            (reservation) => reservation.roomId == space._id
+            (reservation) => {
+              if(reservation.roomId !== space._id) return reservation._id === space._id;
+              return reservation.roomId === space._id;
+            }
           ); // && reservation.tableId === space.tableId && reservation.hardwareId === space.hardwareId
           this.roomReservationService.getTableDetails(space.tableId).subscribe((table: Table) => {
             if (table.isErgonomic) space.table = `Number: ${table.tableNumber} Ergonomic`;
@@ -118,7 +122,6 @@ export class RoomReservationComponent implements OnInit {
               (space._id = existingRoomReservation._id))
             : (space.name = '');
 
-          console.log('existing reservation', existingRoomReservation);
         }
         this.combinedRoomReservation$.next(roomSpaces);
         this.isLoading$.subscribe((isLoading) => (this.isLoading = isLoading));

@@ -65,8 +65,13 @@ export class ParkingReservationComponent implements OnInit {
         this.freeParkingReservationSpaces = parkingSpaces.length - parkingReservations.length;
         this.totalParkingReservationSpaces = parkingSpaces.length;
         for (const space of parkingSpaces) {
+          console.log('SPACE ID', space._id);
           let existingParking = parkingReservations.find(
-            (reservation) => reservation.parkingPlaceId === space._id
+            (reservation) => {
+              // Ugh should look more into this for now that'll do it.
+              if (reservation.parkingPlaceId !== space._id) return reservation._id === space._id;
+              return reservation.parkingPlaceId === space._id;
+            }
           );
           existingParking
             ? (this.parkingReservationService.getUserDetail(existingParking.userId).subscribe((existingUser: User) => {
