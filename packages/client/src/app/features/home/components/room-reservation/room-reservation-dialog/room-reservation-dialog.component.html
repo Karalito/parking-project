@@ -12,7 +12,7 @@
           Hardware
         </mat-label>
         <mat-select [(value)]='roomReservation.hardwareId' formControlName='hardwareId'>
-          <mat-option *ngFor='let hardware of hardwareList' [value]='hardware._id'>{{hardware.name}} | {{hardware.size}}</mat-option>
+          <mat-option *ngFor='let hardware of hardwareList2' [value]='hardware._id'>{{hardware.name}} | {{hardware.size}}</mat-option>
         </mat-select>
       </mat-form-field>
     </mat-dialog-content>

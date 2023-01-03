@@ -28,7 +28,7 @@ export class RoomSpaceDialogComponent implements OnInit {
     this.tableList$.subscribe(tableList => this.tableList = tableList);
 
     this.form = new FormGroup({
-      roomNumber: new FormControl(0, [Validators.required, Validators.minLength(1)]),
+      roomNumber: new FormControl(1, [Validators.required, Validators.minLength(1)]),
       tableId: new FormControl('', [Validators.required])
     });
   }

@@ -11,7 +11,7 @@
         <mat-label>
           Parking Place Number
         </mat-label>
-        <input matInput type='number' value='{{parkingSpace.parkingPlaceNumber}}' formControlName='parkingPlaceNumber' />
+        <input matInput type='number' min='1' required value='{{parkingSpace.parkingPlaceNumber}}' formControlName='parkingPlaceNumber' />
       </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions>

@@ -44,7 +44,7 @@ export class RoomSpaceEffects {
             return addRoomSpaceSuccess({ roomSpace });
           }),
           catchError((error) => {
-            this.notificationService.showFailureCreated(error.message);
+            this.notificationService.showFailureCreated(error.error.message);
             return of(addRoomSpaceFailure(error));
           })
         );
@@ -61,7 +61,7 @@ export class RoomSpaceEffects {
             return deleteRoomSpaceSuccess({ roomSpace });
           }),
           catchError((error) => {
-            this.notificationService.showFailureDelete(error.message);
+            this.notificationService.showFailureDelete(error.error.message);
             return of(deleteRoomSpaceFailure(error));
           })
         );

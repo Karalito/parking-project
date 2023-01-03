@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, MethodNotAllowedException, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Hardware, HardwareDocument } from '../../../schemas/hardware.schema';
 import { Model } from 'mongoose';
@@ -12,6 +12,10 @@ export class HardwareService {
   }
 
   async create(createHardwareDto: CreateHardwareDto): Promise<Hardware> {
+    const hardware = await this._hardwareModel.findOne({ name: createHardwareDto.name, size: createHardwareDto.size });
+
+    if (hardware) throw new MethodNotAllowedException('This hardware already exists');
+
     return await this._hardwareModel.create(createHardwareDto);
   }
 
@@ -24,7 +28,7 @@ export class HardwareService {
   }
 
   async findAll(): Promise<Hardware[]> {
-    const hardwareList: Hardware[] = await this._hardwareModel.find().exec();
+    const hardwareList: Hardware[] = await this._hardwareModel.find().sort('name').exec();
 
     if (!hardwareList && hardwareList.length === 0) throw new NotFoundException(NOT_FOUND_MESSAGES.HARDWARE_LIST_EMPTY);
 
@@ -44,9 +48,9 @@ export class HardwareService {
   }
 
   async delete(_id: string): Promise<Hardware> {
-    const deletedHardware: Hardware = await this._hardwareModel.findByIdAndDelete({_id}).exec();
+    const deletedHardware: Hardware = await this._hardwareModel.findByIdAndDelete({ _id }).exec();
 
-    if(!deletedHardware) throw new NotFoundException(NOT_FOUND_MESSAGES.HARDWARE_NOT_FOUND);
+    if (!deletedHardware) throw new NotFoundException(NOT_FOUND_MESSAGES.HARDWARE_NOT_FOUND);
 
     return deletedHardware;
   }

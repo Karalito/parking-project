@@ -44,7 +44,7 @@ export class HardwareEffects {
           ),
           catchError((error) => {
             this.notificationService.showFailureCreated(error.error.message);
-            return of(addHardwareFailure(error));
+            return of(addHardwareFailure(error.error.message));
           })
         );
       })

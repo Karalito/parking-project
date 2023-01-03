@@ -9,17 +9,18 @@
     <mat-dialog-content>
       <mat-form-field appearance='fill' style='width:50vw'>
         <mat-label>
-         Room Number
+          Room Number
         </mat-label>
-        <input matInput type='number' value='{{roomSpace.roomNumber}}' formControlName='roomNumber' />
+        <input matInput type='number' min='1' required value='{{roomSpace.roomNumber}}' formControlName='roomNumber' />
       </mat-form-field>
       <br />
       <mat-form-field appearance='fill' style='width:50vw'>
         <mat-label>
           Table
         </mat-label>
-        <mat-select [(value)]='roomSpace.tableId' formControlName='tableId'>
-            <mat-option *ngFor='let table of tableList' [value]='table._id'>{{table.tableNumber}} | {{table.isErgonomic ? 'Ergonomic' : 'Not Ergonomic'}}</mat-option>
+        <mat-select [(value)]='roomSpace.tableId' required formControlName='tableId'>
+          <mat-option *ngFor='let table of tableList' [value]='table._id'>{{table.tableNumber}}
+            | {{table.isErgonomic ? 'Ergonomic' : 'Not Ergonomic'}}</mat-option>
         </mat-select>
       </mat-form-field>
       <br />

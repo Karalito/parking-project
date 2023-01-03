@@ -10,7 +10,7 @@ export class NotificationService {
 
   showFailAdd() {
     this.snackBar.open('You cannot have more than 1 reservation per day!', 'Close', {
-      duration: 2000,
+      duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'top',
       panelClass: 'yellow-snackbar'
@@ -19,7 +19,7 @@ export class NotificationService {
 
   showFailDelete() {
     this.snackBar.open('You can only delete your own reservation!', 'Close', {
-      duration: 2000,
+      duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'top',
       panelClass: 'yellow-snackbar'
@@ -28,7 +28,7 @@ export class NotificationService {
 
   showDeleted() {
     this.snackBar.open('Deleted!', 'Close', {
-      duration: 2000,
+      duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'top',
       panelClass: 'red-snackbar'
@@ -37,7 +37,7 @@ export class NotificationService {
 
   showSuccess() {
     this.snackBar.open('Successfully reserved!', 'Close', {
-      duration: 2000,
+      duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'top',
       panelClass: 'green-snackbar'
@@ -46,7 +46,7 @@ export class NotificationService {
 
   showSuccessUpdateUser(message: string) {
     this.snackBar.open(message, 'Close', {
-      duration: 2000,
+      duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'top',
       panelClass: 'green-snackbar'
@@ -55,7 +55,7 @@ export class NotificationService {
 
   showSuccessCreated(message: string) {
     this.snackBar.open(`${message} Successfully created`, 'Close', {
-      duration: 2000,
+      duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'top',
       panelClass: 'green-snackbar'
@@ -64,7 +64,7 @@ export class NotificationService {
 
   showFailureCreated(message: string) {
     this.snackBar.open(`Error occurred during creation ${message}`, 'Close', {
-      duration: 2000,
+      duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'top',
       panelClass: 'red-snackbar'
@@ -73,10 +73,10 @@ export class NotificationService {
 
   showFailureDelete(message: string) {
     this.snackBar.open(`Error occurred during deletion ${message}`, 'Close', {
-      duration: 2000,
+      duration: 5000,
       horizontalPosition: 'center',
       verticalPosition: 'top',
       panelClass: 'red-snackbar'
-    })
+    });
   }
 }

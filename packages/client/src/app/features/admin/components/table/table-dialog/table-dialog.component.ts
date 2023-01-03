@@ -25,7 +25,7 @@ export class TableDialogComponent implements OnInit {
   ngOnInit(): void {
     this.roomSpaceList$.subscribe(roomSpaceList => this.roomSpaceList = roomSpaceList);
     this.form = new FormGroup({
-      tableNumber: new FormControl(0, [Validators.required, Validators.minLength(1)]),
+      tableNumber: new FormControl(1, [Validators.required, Validators.minLength(1)]),
       isErgonomic: new FormControl(false, [Validators.required])
     });
   }

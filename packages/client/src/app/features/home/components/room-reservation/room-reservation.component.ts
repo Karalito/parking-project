@@ -181,4 +181,5 @@ export class RoomReservationComponent implements OnInit {
     this.isLoading = false;
     return this.notificationService.showFailDelete();
   }
+
 }

@@ -1,16 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { RoomReservation } from '../../../../../shared/models/reservations.model';
 import { selectHardwareList } from '../../../../../state/hardware/hardware.selector';
-import { selectTableList } from '../../../../../state/table/table.selector';
 import { addRoomReservation, getRoomReservation } from '../../../../../state/room-reservation/room-reservation.actions';
 import { Table } from '../../../../../shared/models/table.model';
 import { Hardware } from '../../../../../shared/models/hardware.model';
-import { selectRoomSpaceList } from '../../../../../state/room-space/room-space.selector';
-import { RoomSpace } from '../../../../../shared/models/room-space.model';
-import { selectUser } from '../../../../../state/auth/auth.selectors';
+import { selectRoomReservation } from '../../../../../state/room-reservation/room-reservation.selector';
 
 @Component({
   selector: 'app-room-reservation-dialog',
@@ -22,9 +19,12 @@ export class RoomReservationDialogComponent implements OnInit {
   form: FormGroup;
 
   hardwareList$ = this._store.select(selectHardwareList);
+  reservationList$ = this._store.select(selectRoomReservation);
 
   tableList: Table[];
   hardwareList: Hardware[];
+  reservationList: RoomReservation[];
+  hardwareList2: Hardware[] = [];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public roomReservation: RoomReservation,
@@ -33,10 +33,13 @@ export class RoomReservationDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.reservationList$.subscribe(reservationList => this.reservationList = reservationList);
     this.hardwareList$.subscribe(hardwareList => this.hardwareList = hardwareList);
+
+    this.checkForTakenHardware(this.hardwareList, this.reservationList);
+    console.log(this.hardwareList2);
     this.form = new FormGroup({
-      hardwareId: new FormControl(''),
+      hardwareId: new FormControl('')
     });
   }
 
@@ -58,5 +61,23 @@ export class RoomReservationDialogComponent implements OnInit {
     }));
 
     this._store.dispatch(getRoomReservation({ date: this.roomReservation.date }));
+  }
+
+  checkForTakenHardware(hardwareList: Hardware[], reservationList: RoomReservation[]) {
+
+    for (let i = 0; i < hardwareList.length; i++) {
+      let found = false;
+      for (let j = 0; j < reservationList.length; j++) {
+        if (hardwareList[i]._id === reservationList[j].hardwareId) {
+          found = true;
+          break;
+        }
+      }
+      if (!found) {
+        this.hardwareList2.push(hardwareList[i]);
+      }
+      
+    }
+
   }
 }

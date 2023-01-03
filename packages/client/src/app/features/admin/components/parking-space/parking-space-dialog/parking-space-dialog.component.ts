@@ -24,7 +24,7 @@ export class ParkingSpaceDialogComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      parkingPlaceNumber: new FormControl(0, [Validators.required, Validators.minLength(1)])
+      parkingPlaceNumber: new FormControl(1, [Validators.required, Validators.minLength(1)])
     });
   }
 

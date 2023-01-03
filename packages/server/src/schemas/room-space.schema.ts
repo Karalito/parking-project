@@ -8,6 +8,7 @@ export class RoomSpace {
   roomNumber: number;
   @Prop({ required: true, type: mongoose.Schema.Types.ObjectId, ref: Table.name })
   tableId: string;
+  _id?: any;
 }
 
 export type RoomSpaceDocument = RoomSpace & Document;

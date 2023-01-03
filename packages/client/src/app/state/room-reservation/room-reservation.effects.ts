@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, switchMap, map, tap } from 'rxjs/operators';
 import * as RoomActions from './room-reservation.actions';
-import { getRoomReservation, getRoomReservationSuccess, getRoomReservationFailure } from './room-reservation.actions';
 import { Observable, of } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { RoomReservationService } from 'src/app/features/home/services/room-reservation/room-reservation.service';
@@ -42,7 +41,7 @@ export class RoomReservationEffects {
           .addRoomReservation(payload.userId, payload.roomId, payload.hardwareId, payload.date)
           .pipe(
             map((roomReservation) => RoomActions.addRoomReservationSuccess({ roomReservation })),
-            catchError((error) => of(RoomActions.addRoomReservationFailure(error)))
+            catchError((error) => of(RoomActions.addRoomReservationFailure(error.error.message)))
           );
       })
     )
@@ -62,7 +61,7 @@ export class RoomReservationEffects {
       switchMap((payload) => {
         return this.roomReservationService.deleteRoomReservation(payload.userId).pipe(
           map(() => RoomActions.deleteRoomReservationSuccess()),
-          catchError((error) => of(RoomActions.deleteRoomReservationFailure(error)))
+          catchError((error) => of(RoomActions.deleteRoomReservationFailure(error.error.message)))
         );
       })
     )

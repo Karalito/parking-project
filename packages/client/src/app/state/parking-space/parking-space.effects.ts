@@ -41,7 +41,7 @@ export class ParkingSpaceEffects {
             return addParkingSpaceSuccess({ parkingSpace });
           }),
           catchError((error) => {
-            this.notificationService.showFailureCreated(error.message);
+            this.notificationService.showFailureCreated(error.error.message);
             return of(addParkingSpaceFailure(error));
           })
         );
@@ -58,7 +58,7 @@ export class ParkingSpaceEffects {
             return deleteParkingSpaceSuccess({ parkingSpace });
           }),
           catchError((error) => {
-            this.notificationService.showFailureDelete(error.message);
+            this.notificationService.showFailureDelete(error.error.message);
             return of(deleteParkingSpaceFailure(error));
           })
         );
