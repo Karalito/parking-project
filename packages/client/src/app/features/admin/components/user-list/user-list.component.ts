@@ -4,7 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
 import { selectUserList } from '../../../../state/auth/auth.selectors';
 import { Store } from '@ngrx/store';
-import { getUserListAttempt } from '../../../../state/auth/auth.actions';
+import { getUserListAttempt, updateUserSuccess } from '../../../../state/auth/auth.actions';
+import { Actions, ofType } from '@ngrx/effects';
 
 @Component({
   selector: 'user-list',
@@ -16,12 +17,15 @@ export class UserListComponent implements OnInit {
   userList: User[];
   displayedColumns: string[] = ['avatar', 'name', 'email', 'role', 'actions'];
 
-  constructor(public dialog: MatDialog, private _store: Store) {
+  constructor(public dialog: MatDialog, private _store: Store, private actions$: Actions) {
   }
 
   ngOnInit() {
     this._store.dispatch(getUserListAttempt());
     this.userList$.subscribe(userList => this.userList = userList);
+    this.actions$.pipe(ofType(updateUserSuccess)).subscribe(() => {
+      this._store.dispatch(getUserListAttempt());
+    })
   }
 
   openDialog(user: User) {
